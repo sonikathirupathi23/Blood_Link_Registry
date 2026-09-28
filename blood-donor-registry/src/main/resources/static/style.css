@@ -1,0 +1,1332 @@
+/* =========================================================
+   BLOODLINK PROFESSIONAL UI
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #b91c32;
+    --primary-dark: #991b2e;
+    --primary-light: #fdf0f2;
+
+    --text: #172033;
+    --text-secondary: #64748b;
+    --text-light: #94a3b8;
+
+    --border: #e2e8f0;
+    --border-dark: #cbd5e1;
+
+    --background: #f6f8fb;
+    --white: #ffffff;
+
+    --success: #15803d;
+    --success-bg: #ecfdf3;
+
+    --warning: #b45309;
+    --warning-bg: #fff7ed;
+
+    --danger: #b91c32;
+    --danger-bg: #fff1f2;
+}
+
+body {
+    font-family:
+            Inter,
+            -apple-system,
+            BlinkMacSystemFont,
+            "Segoe UI",
+            Arial,
+            sans-serif;
+
+    background: var(--background);
+    color: var(--text);
+
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.topbar {
+    height: 74px;
+
+    background: var(--white);
+
+    border-bottom: 1px solid var(--border);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 30px;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    z-index: 100;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-mark {
+    width: 38px;
+    height: 38px;
+
+    border-radius: 8px;
+
+    background: var(--primary);
+
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: .5px;
+}
+
+.brand-text h1 {
+    font-size: 18px;
+    line-height: 1.2;
+
+    color: var(--text);
+
+    font-weight: 700;
+}
+
+.brand-text span {
+    display: block;
+
+    color: var(--text-light);
+
+    font-size: 11px;
+
+    margin-top: 2px;
+}
+
+.system-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    font-size: 13px;
+
+    color: var(--text-secondary);
+}
+
+.status-indicator {
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #16a34a;
+}
+
+.status-indicator.error {
+    background: #dc2626;
+}
+
+
+/* =========================================================
+   LAYOUT
+========================================================= */
+
+.app-layout {
+    display: flex;
+
+    min-height: 100vh;
+
+    padding-top: 74px;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar {
+    width: 235px;
+
+    background: #ffffff;
+
+    border-right: 1px solid var(--border);
+
+    position: fixed;
+
+    top: 74px;
+    bottom: 0;
+    left: 0;
+
+    padding: 25px 14px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-section {
+    margin-bottom: 25px;
+}
+
+.nav-label {
+    padding: 0 12px 8px;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.2px;
+
+    color: #94a3b8;
+}
+
+.nav-item {
+    width: 100%;
+
+    height: 42px;
+
+    border: 0;
+
+    background: transparent;
+
+    border-radius: 6px;
+
+    padding: 0 12px;
+
+    margin-bottom: 3px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    color: #526174;
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    transition:
+            background .15s ease,
+            color .15s ease;
+}
+
+.nav-item:hover {
+    background: #f8fafc;
+
+    color: var(--text);
+}
+
+.nav-item.active {
+    background: var(--primary-light);
+
+    color: var(--primary);
+
+    font-weight: 600;
+}
+
+.nav-icon {
+    width: 18px;
+
+    text-align: center;
+
+    font-size: 16px;
+
+    color: currentColor;
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.main-content {
+    margin-left: 235px;
+
+    width: calc(100% - 235px);
+
+    padding: 38px 42px 60px;
+
+    max-width: 1600px;
+}
+
+
+/* =========================================================
+   PAGE SECTIONS
+========================================================= */
+
+.page-section {
+    display: none;
+}
+
+.page-section.active {
+    display: block;
+}
+
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.page-header {
+    margin-bottom: 28px;
+}
+
+.page-header-action {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+.page-kicker {
+    display: block;
+
+    color: var(--primary);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.4px;
+
+    margin-bottom: 6px;
+}
+
+.page-header h2 {
+    font-size: 27px;
+
+    line-height: 1.2;
+
+    font-weight: 700;
+
+    color: var(--text);
+
+    margin-bottom: 7px;
+}
+
+.page-header p {
+    color: var(--text-secondary);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.primary-button {
+    height: 40px;
+
+    padding: 0 17px;
+
+    border: 1px solid var(--primary);
+
+    border-radius: 6px;
+
+    background: var(--primary);
+
+    color: #ffffff;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+}
+
+.primary-button:hover {
+    background: var(--primary-dark);
+
+    border-color: var(--primary-dark);
+}
+
+.secondary-button {
+    height: 40px;
+
+    padding: 0 16px;
+
+    border: 1px solid var(--border-dark);
+
+    border-radius: 6px;
+
+    background: white;
+
+    color: var(--text);
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+}
+
+.secondary-button:hover {
+    background: #f8fafc;
+}
+
+.clear-button {
+    height: 40px;
+
+    padding: 0 13px;
+
+    border: 0;
+
+    background: transparent;
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+
+    cursor: pointer;
+}
+
+.clear-button:hover {
+    color: var(--primary);
+}
+
+.text-button {
+    border: 0;
+
+    background: transparent;
+
+    color: var(--primary);
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   STATISTICS
+========================================================= */
+
+.stat-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 14px;
+
+    margin-bottom: 22px;
+}
+
+.stat-card {
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    border-radius: 8px;
+
+    padding: 20px 21px;
+
+    min-height: 130px;
+}
+
+.stat-label {
+    color: #7b8798;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: .7px;
+
+    margin-bottom: 13px;
+}
+
+.stat-value {
+    font-size: 29px;
+
+    font-weight: 700;
+
+    color: var(--text);
+
+    line-height: 1;
+}
+
+.stat-description {
+    margin-top: 9px;
+
+    color: var(--text-light);
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   CONTENT CARD
+========================================================= */
+
+.content-card {
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    border-radius: 8px;
+
+    margin-bottom: 20px;
+
+    overflow: hidden;
+}
+
+.card-header {
+    min-height: 68px;
+
+    padding: 18px 20px;
+
+    border-bottom: 1px solid var(--border);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+.card-header h3 {
+    font-size: 14px;
+
+    font-weight: 650;
+
+    color: var(--text);
+
+    margin-bottom: 4px;
+}
+
+.card-header p {
+    font-size: 11px;
+
+    color: var(--text-light);
+}
+
+
+/* =========================================================
+   BLOOD OVERVIEW
+========================================================= */
+
+.blood-overview {
+    display: grid;
+
+    grid-template-columns:
+        repeat(8, minmax(0, 1fr));
+}
+
+.blood-overview-item {
+    min-height: 110px;
+
+    padding: 18px 14px;
+
+    border-right: 1px solid var(--border);
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 7px;
+}
+
+.blood-overview-item:last-child {
+    border-right: 0;
+}
+
+.blood-type {
+    font-size: 17px;
+
+    font-weight: 700;
+
+    color: var(--primary);
+}
+
+.blood-count {
+    font-size: 21px;
+
+    font-weight: 650;
+
+    color: var(--text);
+}
+
+.blood-label {
+    font-size: 10px;
+
+    color: var(--text-light);
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+thead {
+    background: #f8fafc;
+}
+
+th {
+    text-align: left;
+
+    padding: 11px 18px;
+
+    border-bottom: 1px solid var(--border);
+
+    color: #718096;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: .55px;
+
+    white-space: nowrap;
+}
+
+td {
+    padding: 14px 18px;
+
+    border-bottom: 1px solid #eef2f6;
+
+    color: #334155;
+
+    font-size: 12px;
+
+    vertical-align: middle;
+}
+
+tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+tbody tr:hover {
+    background: #fafbfd;
+}
+
+.donor-name {
+    color: var(--text);
+
+    font-weight: 600;
+
+    margin-bottom: 3px;
+}
+
+.donor-email {
+    color: var(--text-light);
+
+    font-size: 10px;
+}
+
+.blood-badge {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-width: 36px;
+
+    height: 25px;
+
+    padding: 0 8px;
+
+    border-radius: 5px;
+
+    background: var(--primary-light);
+
+    color: var(--primary);
+
+    font-weight: 700;
+
+    font-size: 11px;
+}
+
+.status-badge {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    padding: 5px 8px;
+
+    border-radius: 4px;
+
+    font-size: 10px;
+
+    font-weight: 600;
+}
+
+.status-badge.eligible {
+    background: var(--success-bg);
+
+    color: var(--success);
+}
+
+.status-badge.recent {
+    background: var(--warning-bg);
+
+    color: var(--warning);
+}
+
+.row-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 5px;
+}
+
+.action-button {
+    border: 1px solid var(--border);
+
+    background: white;
+
+    color: var(--text-secondary);
+
+    border-radius: 4px;
+
+    height: 28px;
+
+    padding: 0 8px;
+
+    font-size: 10px;
+
+    cursor: pointer;
+}
+
+.action-button:hover {
+    border-color: var(--border-dark);
+
+    color: var(--text);
+}
+
+.action-button.delete:hover {
+    border-color: #fecdd3;
+
+    color: var(--danger);
+
+    background: var(--danger-bg);
+}
+
+
+/* =========================================================
+   SEARCH PANEL
+========================================================= */
+
+.search-panel {
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 8px;
+
+    padding: 16px;
+
+    margin-bottom: 20px;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    gap: 12px;
+}
+
+.search-main {
+    flex: 1;
+
+    min-width: 220px;
+}
+
+.filter-field {
+    width: 165px;
+}
+
+.search-panel label {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: #64748b;
+
+    font-size: 10px;
+
+    font-weight: 650;
+}
+
+.search-panel input,
+.search-panel select,
+.find-field input,
+.find-field select {
+    width: 100%;
+
+    height: 40px;
+
+    padding: 0 11px;
+
+    border: 1px solid var(--border-dark);
+
+    border-radius: 5px;
+
+    background: white;
+
+    color: var(--text);
+
+    font-size: 12px;
+
+    outline: none;
+}
+
+.search-panel input:focus,
+.search-panel select:focus,
+.find-field input:focus,
+.find-field select:focus {
+    border-color: var(--primary);
+
+    box-shadow: 0 0 0 2px rgba(185, 28, 50, .08);
+}
+
+
+/* =========================================================
+   FIND DONOR
+========================================================= */
+
+.find-panel {
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 8px;
+
+    padding: 22px;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    gap: 15px;
+
+    margin-bottom: 32px;
+}
+
+.find-field {
+    width: 260px;
+}
+
+.find-field label {
+    display: block;
+
+    color: #64748b;
+
+    font-size: 11px;
+
+    font-weight: 650;
+
+    margin-bottom: 7px;
+}
+
+.find-button {
+    margin-left: auto;
+}
+
+.result-header {
+    margin-bottom: 13px;
+}
+
+.result-header h3 {
+    font-size: 15px;
+
+    color: var(--text);
+
+    margin-bottom: 4px;
+}
+
+.result-header p {
+    font-size: 11px;
+
+    color: var(--text-light);
+}
+
+.donor-result-list {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 12px;
+}
+
+.donor-result {
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 7px;
+
+    padding: 17px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+.donor-result-info {
+    min-width: 0;
+}
+
+.donor-result-name {
+    color: var(--text);
+
+    font-size: 14px;
+
+    font-weight: 650;
+
+    margin-bottom: 5px;
+}
+
+.donor-result-meta {
+    color: var(--text-secondary);
+
+    font-size: 11px;
+}
+
+.donor-result-status {
+    text-align: right;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   EMPTY / LOADING
+========================================================= */
+
+.empty-state {
+    text-align: center;
+
+    padding: 35px 20px;
+
+    color: var(--text-light);
+}
+
+.loading-state {
+    padding: 35px;
+
+    text-align: center;
+
+    color: var(--text-light);
+
+    font-size: 12px;
+
+    grid-column: 1 / -1;
+}
+
+.empty-search {
+    background: white;
+
+    border: 1px dashed var(--border-dark);
+
+    border-radius: 8px;
+
+    padding: 55px 20px;
+
+    text-align: center;
+
+    grid-column: 1 / -1;
+}
+
+.empty-search-icon {
+    font-size: 25px;
+
+    color: #cbd5e1;
+
+    margin-bottom: 10px;
+}
+
+.empty-search h3 {
+    font-size: 14px;
+
+    margin-bottom: 5px;
+}
+
+.empty-search p {
+    font-size: 11px;
+
+    color: var(--text-light);
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(15, 23, 42, .45);
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    z-index: 500;
+}
+
+.modal-overlay.show {
+    display: flex;
+}
+
+.modal {
+    width: 100%;
+
+    max-width: 520px;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background: white;
+
+    border-radius: 8px;
+
+    box-shadow:
+            0 20px 50px rgba(15, 23, 42, .2);
+}
+
+.modal-header {
+    padding: 19px 22px;
+
+    border-bottom: 1px solid var(--border);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+}
+
+.modal-header h3 {
+    font-size: 17px;
+
+    color: var(--text);
+}
+
+.modal-close {
+    width: 30px;
+    height: 30px;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #94a3b8;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    border-radius: 5px;
+}
+
+.modal-close:hover {
+    background: #f1f5f9;
+
+    color: var(--text);
+}
+
+.modal-form {
+    padding: 22px;
+}
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 15px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group.full {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: #475569;
+
+    font-size: 11px;
+
+    font-weight: 650;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+
+    border: 1px solid var(--border-dark);
+
+    border-radius: 5px;
+
+    padding: 10px;
+
+    color: var(--text);
+
+    background: white;
+
+    font-size: 12px;
+
+    outline: none;
+}
+
+.form-group input,
+.form-group select {
+    height: 40px;
+}
+
+.form-group textarea {
+    min-height: 80px;
+
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--primary);
+}
+
+.form-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 8px;
+
+    padding-top: 8px;
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast {
+    position: fixed;
+
+    right: 22px;
+
+    bottom: 22px;
+
+    min-width: 240px;
+
+    max-width: 350px;
+
+    padding: 12px 15px;
+
+    border-radius: 6px;
+
+    background: #172033;
+
+    color: white;
+
+    font-size: 12px;
+
+    opacity: 0;
+
+    transform: translateY(10px);
+
+    pointer-events: none;
+
+    transition: .2s ease;
+
+    z-index: 1000;
+}
+
+.toast.show {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .stat-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .blood-overview {
+        grid-template-columns:
+            repeat(4, minmax(0, 1fr));
+    }
+
+    .blood-overview-item:nth-child(4) {
+        border-right: 0;
+    }
+
+    .donor-result-list {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media (max-width: 800px) {
+
+    .sidebar {
+        width: 190px;
+    }
+
+    .main-content {
+        margin-left: 190px;
+
+        width: calc(100% - 190px);
+
+        padding: 28px 20px;
+    }
+
+    .search-panel,
+    .find-panel {
+        flex-wrap: wrap;
+    }
+
+    .search-main,
+    .filter-field,
+    .find-field {
+        width: 100%;
+        min-width: 100%;
+    }
+
+    .find-button {
+        margin-left: 0;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .topbar {
+        padding: 0 15px;
+    }
+
+    .brand-text span {
+        display: none;
+    }
+
+    .sidebar {
+        width: 62px;
+
+        padding: 15px 8px;
+    }
+
+    .nav-label,
+    .nav-item span:not(.nav-icon) {
+        display: none;
+    }
+
+    .nav-item {
+        justify-content: center;
+
+        padding: 0;
+    }
+
+    .main-content {
+        margin-left: 62px;
+
+        width: calc(100% - 62px);
+
+        padding: 22px 14px;
+    }
+
+    .page-header-action {
+        flex-direction: column;
+    }
+
+    .stat-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .blood-overview {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .blood-overview-item {
+        border-right: 1px solid var(--border);
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full {
+        grid-column: auto;
+    }
+
+}

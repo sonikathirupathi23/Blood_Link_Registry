@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BloodLink | Blood Donor Management</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="topbar">
+
+    <div class="brand">
+
+        <div class="brand-mark">
+            BL
+        </div>
+
+        <div class="brand-text">
+            <h1>BloodLink</h1>
+            <span>Blood Donor Management System</span>
+        </div>
+
+    </div>
+
+    <div class="system-status">
+        <span class="status-indicator" id="apiDot"></span>
+        <span id="apiStatusText">Connecting...</span>
+    </div>
+
+</header>
+
+
+<!-- ================= APPLICATION ================= -->
+
+<div class="app-layout">
+
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="nav-section">
+
+            <div class="nav-label">
+                OVERVIEW
+            </div>
+
+            <button class="nav-item active" data-section="dashboard">
+                <span class="nav-icon">⌂</span>
+                <span>Dashboard</span>
+            </button>
+
+        </div>
+
+
+        <div class="nav-section">
+
+            <div class="nav-label">
+                DONOR MANAGEMENT
+            </div>
+
+            <button class="nav-item" data-section="donors">
+                <span class="nav-icon">○</span>
+                <span>Donors</span>
+            </button>
+
+            <button class="nav-item" data-section="find-donor">
+                <span class="nav-icon">⌕</span>
+                <span>Find Donor</span>
+            </button>
+
+        </div>
+
+
+        <div class="nav-section">
+
+            <div class="nav-label">
+                DONATION MANAGEMENT
+            </div>
+
+            <button class="nav-item" data-section="donations">
+                <span class="nav-icon">▣</span>
+                <span>Donations</span>
+            </button>
+
+        </div>
+
+
+        <div class="nav-section">
+
+            <div class="nav-label">
+                SYSTEM
+            </div>
+
+            <button class="nav-item" data-section="blood-groups">
+                <span class="nav-icon">◇</span>
+                <span>Blood Groups</span>
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="main-content">
+
+
+        <!-- ================================================= -->
+        <!-- DASHBOARD -->
+        <!-- ================================================= -->
+
+        <section id="dashboard" class="page-section active">
+
+            <div class="page-header">
+
+                <div>
+
+                    <span class="page-kicker">
+                        OVERVIEW
+                    </span>
+
+                    <h2>Dashboard</h2>
+
+                    <p>
+                        Overview of the BloodLink donor registry and donation activity.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- STATISTICS -->
+
+            <div class="stat-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-label">
+                        TOTAL DONORS
+                    </div>
+
+                    <div class="stat-value" id="totalDonors">
+                        0
+                    </div>
+
+                    <div class="stat-description">
+                        Registered donors
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-label">
+                        ELIGIBLE DONORS
+                    </div>
+
+                    <div class="stat-value" id="eligibleDonors">
+                        0
+                    </div>
+
+                    <div class="stat-description">
+                        Available based on donation interval
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-label">
+                        DONATION RECORDS
+                    </div>
+
+                    <div class="stat-value" id="totalDonations">
+                        0
+                    </div>
+
+                    <div class="stat-description">
+                        Recorded donations
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-label">
+                        BLOOD GROUPS
+                    </div>
+
+                    <div class="stat-value" id="totalGroups">
+                        0
+                    </div>
+
+                    <div class="stat-description">
+                        Registered blood groups
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BLOOD AVAILABILITY -->
+
+            <div class="content-card">
+
+                <div class="card-header">
+
+                    <div>
+                        <h3>Blood Group Availability</h3>
+
+                        <p>
+                            Current donor distribution by blood group.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div
+                        class="blood-overview"
+                        id="dashboardBloodGroups"
+                >
+
+                    <div class="loading-state">
+                        Loading...
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RECENT DONATIONS -->
+
+            <div class="content-card">
+
+                <div class="card-header">
+
+                    <div>
+                        <h3>Recent Donations</h3>
+
+                        <p>
+                            Latest donation activity recorded in the system.
+                        </p>
+                    </div>
+
+                    <button
+                            class="text-button"
+                            data-section-link="donations"
+                    >
+                        View all
+                    </button>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                        <tr>
+                            <th>Donor</th>
+                            <th>Blood Group</th>
+                            <th>Donation Date</th>
+                            <th>Notes</th>
+                        </tr>
+
+                        </thead>
+
+                        <tbody id="recentDonationsBody">
+
+                        <tr>
+                            <td colspan="4" class="empty-state">
+                                Loading...
+                            </td>
+                        </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================= -->
+        <!-- DONORS -->
+        <!-- ================================================= -->
+
+        <section id="donors" class="page-section">
+
+            <div class="page-header page-header-action">
+
+                <div>
+
+                    <span class="page-kicker">
+                        DONOR MANAGEMENT
+                    </span>
+
+                    <h2>Donors</h2>
+
+                    <p>
+                        Manage registered blood donors and their information.
+                    </p>
+
+                </div>
+
+
+                <button
+                        class="primary-button"
+                        id="addDonorBtn"
+                >
+                    + Register Donor
+                </button>
+
+            </div>
+
+
+            <!-- SEARCH -->
+
+            <div class="search-panel">
+
+                <div class="search-main">
+
+                    <label>
+                        Search donors
+                    </label>
+
+                    <input
+                            type="text"
+                            id="donorSearchInput"
+                            placeholder="Search by name, phone or email"
+                    >
+
+                </div>
+
+
+                <div class="filter-field">
+
+                    <label>
+                        Blood Group
+                    </label>
+
+                    <select id="donorBloodGroupFilter">
+
+                        <option value="">
+                            All groups
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="filter-field">
+
+                    <label>
+                        City
+                    </label>
+
+                    <input
+                            type="text"
+                            id="donorCityFilter"
+                            placeholder="All cities"
+                    >
+
+                </div>
+
+
+                <button
+                        class="secondary-button"
+                        id="donorSearchBtn"
+                >
+                    Search
+                </button>
+
+                <button
+                        class="clear-button"
+                        id="clearDonorSearchBtn"
+                >
+                    Clear
+                </button>
+
+            </div>
+
+
+            <!-- DONOR TABLE -->
+
+            <div class="content-card">
+
+                <div class="card-header">
+
+                    <div>
+                        <h3>Registered Donors</h3>
+
+                        <p id="donorCountLabel">
+                            Loading donors...
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                        <tr>
+                            <th>Donor</th>
+                            <th>Blood Group</th>
+                            <th>Contact</th>
+                            <th>City</th>
+                            <th>Last Donation</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+
+                        </thead>
+
+
+                        <tbody id="donorTableBody">
+
+                        <tr>
+                            <td
+                                    colspan="7"
+                                    class="empty-state"
+                            >
+                                Loading donors...
+                            </td>
+                        </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================= -->
+        <!-- FIND DONOR -->
+        <!-- ================================================= -->
+
+        <section id="find-donor" class="page-section">
+
+            <div class="page-header">
+
+                <div>
+
+                    <span class="page-kicker">
+                        DONOR SEARCH
+                    </span>
+
+                    <h2>Find a Donor</h2>
+
+                    <p>
+                        Search for eligible blood donors by blood group and location.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="find-panel">
+
+                <div class="find-field">
+
+                    <label>
+                        Blood Group
+                    </label>
+
+                    <select id="findBloodGroup">
+
+                        <option value="">
+                            Select blood group
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="find-field">
+
+                    <label>
+                        Location
+                    </label>
+
+                    <input
+                            type="text"
+                            id="findCity"
+                            placeholder="Enter city"
+                    >
+
+                </div>
+
+
+                <button
+                        class="primary-button find-button"
+                        id="findDonorBtn"
+                >
+                    Find Donors
+                </button>
+
+            </div>
+
+
+            <div class="result-header">
+
+                <div>
+                    <h3>Available Donors</h3>
+
+                    <p id="findResultLabel">
+                        Select criteria and search.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div
+                    class="donor-result-list"
+                    id="findDonorResults"
+            >
+
+                <div class="empty-search">
+
+                    <div class="empty-search-icon">
+                        ⌕
+                    </div>
+
+                    <h3>Search for a donor</h3>
+
+                    <p>
+                        Select a blood group and location to find registered donors.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================= -->
+        <!-- DONATIONS -->
+        <!-- ================================================= -->
+
+        <section id="donations" class="page-section">
+
+            <div class="page-header page-header-action">
+
+                <div>
+
+                    <span class="page-kicker">
+                        DONATION MANAGEMENT
+                    </span>
+
+                    <h2>Donations</h2>
+
+                    <p>
+                        Track blood donation activity and history.
+                    </p>
+
+                </div>
+
+
+                <button
+                        class="primary-button"
+                        id="addDonationBtn"
+                >
+                    + Record Donation
+                </button>
+
+            </div>
+
+
+            <div class="search-panel">
+
+                <div class="search-main">
+
+                    <label>
+                        Search
+                    </label>
+
+                    <input
+                            type="text"
+                            id="donationSearch"
+                            placeholder="Search by donor name"
+                    >
+
+                </div>
+
+
+                <div class="filter-field">
+
+                    <label>
+                        Blood Group
+                    </label>
+
+                    <select id="donationBloodGroupFilter">
+
+                        <option value="">
+                            All groups
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                        class="secondary-button"
+                        id="donationSearchBtn"
+                >
+                    Search
+                </button>
+
+
+                <button
+                        class="clear-button"
+                        id="clearDonationSearchBtn"
+                >
+                    Clear
+                </button>
+
+            </div>
+
+
+            <div class="content-card">
+
+                <div class="card-header">
+
+                    <div>
+                        <h3>Donation History</h3>
+
+                        <p id="donationCountLabel">
+                            Loading records...
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                        <tr>
+                            <th>Donor</th>
+                            <th>Blood Group</th>
+                            <th>Donation Date</th>
+                            <th>Notes</th>
+                        </tr>
+
+                        </thead>
+
+
+                        <tbody id="donationTableBody">
+
+                        <tr>
+                            <td
+                                    colspan="4"
+                                    class="empty-state"
+                            >
+                                Loading...
+                            </td>
+                        </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================= -->
+        <!-- BLOOD GROUPS -->
+        <!-- ================================================= -->
+
+        <section id="blood-groups" class="page-section">
+
+            <div class="page-header">
+
+                <div>
+
+                    <span class="page-kicker">
+                        SYSTEM
+                    </span>
+
+                    <h2>Blood Groups</h2>
+
+                    <p>
+                        Overview of registered donors across blood groups.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="content-card">
+
+                <div class="card-header">
+
+                    <div>
+                        <h3>Blood Group Distribution</h3>
+
+                        <p>
+                            Current donor count by blood group.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                        <tr>
+                            <th>Blood Group</th>
+                            <th>Registered Donors</th>
+                            <th>Availability</th>
+                        </tr>
+
+                        </thead>
+
+
+                        <tbody id="bloodGroupTableBody">
+
+                        <tr>
+                            <td
+                                    colspan="3"
+                                    class="empty-state"
+                            >
+                                Loading...
+                            </td>
+                        </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- MODAL -->
+<!-- ================================================= -->
+
+<div
+        class="modal-overlay"
+        id="modalOverlay"
+>
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <div>
+
+                <span class="page-kicker">
+                    BLOODLINK
+                </span>
+
+                <h3 id="modalTitle">
+                    Form
+                </h3>
+
+            </div>
+
+            <button
+                    class="modal-close"
+                    id="closeModalBtn"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div id="modalContent"></div>
+
+    </div>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- TOAST -->
+<!-- ================================================= -->
+
+<div
+        class="toast"
+        id="toast"
+>
+    <span id="toastMessage"></span>
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
